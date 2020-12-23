@@ -2,7 +2,7 @@
 in the config.py file."""
 
 import pygame
-from config import ChessPieces
+from config import BlackPieces, WhitePieces
 from config import SCREEN_HEIGHT, SCREEN_WIDTH, SQUARE_SIZE, BLACK_SQUARE, WHITE_SQUARE
 
 
@@ -178,7 +178,36 @@ class Chessboard:
         screen.blit(BLACK_SQUARE, (SQUARE_SIZE*7, SQUARE_SIZE*row))
     
     def create_chess_pieces():
-        screen.blit(ChessPieces.BLACK_BISHOP, Chessboard.moves[1]['a7'])
+        screen.blit(BlackPieces.BLACK_KING, Chessboard.moves[0]['e8'])
+        screen.blit(BlackPieces.BLACK_QUEEN, Chessboard.moves[0]['d8'])
+
+        screen.blit(BlackPieces.BLACK_ROOK, Chessboard.moves[0]['a8'])
+        screen.blit(BlackPieces.BLACK_ROOK, Chessboard.moves[0]['h8'])
+
+        screen.blit(BlackPieces.BLACK_KNIGHT, Chessboard.moves[0]['b8'])
+        screen.blit(BlackPieces.BLACK_KNIGHT, Chessboard.moves[0]['g8'])
+
+        screen.blit(BlackPieces.BLACK_BISHOP, Chessboard.moves[0]['c8'])
+        screen.blit(BlackPieces.BLACK_BISHOP, Chessboard.moves[0]['f8'])
+
+        for i in Chessboard.moves[1]:
+            screen.blit(BlackPieces.BLACK_PAWN, Chessboard.moves[1][i])
+
+        screen.blit(WhitePieces.WHITE_KING, Chessboard.moves[7]['e1'])
+        screen.blit(WhitePieces.WHITE_QUEEN, Chessboard.moves[7]['d1'])
+
+        screen.blit(WhitePieces.WHITE_ROOK, Chessboard.moves[7]['a1'])
+        screen.blit(WhitePieces.WHITE_ROOK, Chessboard.moves[7]['h1'])
+
+        screen.blit(WhitePieces.WHITE_KNIGHT, Chessboard.moves[7]['b1'])
+        screen.blit(WhitePieces.WHITE_KNIGHT, Chessboard.moves[7]['g1'])
+
+        screen.blit(WhitePieces.WHITE_BISHOP, Chessboard.moves[7]['c1'])
+        screen.blit(WhitePieces.WHITE_BISHOP, Chessboard.moves[7]['f1'])
+        
+        for i in Chessboard.moves[6]:
+            screen.blit(WhitePieces.WHITE_PAWN, Chessboard.moves[6][i])
+
 
     def __init__(self):
         Chessboard.create_chessboard()
