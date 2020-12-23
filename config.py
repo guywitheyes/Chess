@@ -5,7 +5,7 @@ BLACK_SQUARE = pygame.image.load('assets/black-square.png')
 WHITE_SQUARE = pygame.image.load('assets/white-square.png')
 SQUARE_SIZE = 50
 
-(SCREEN_WIDTH, SCREEN_HEIGHT) = (440, 480)
+(SCREEN_WIDTH, SCREEN_HEIGHT) = (400, 400)
 
 class BlackPieces:
     BLACK_KING = pygame.image.load('assets/pieces/bk.png')
