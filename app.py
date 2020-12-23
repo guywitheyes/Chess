@@ -1,5 +1,8 @@
+"""This file is used to run the game loop."""
+
+
 import pygame
-from chessboard import Chessboard, screen
+from game import Chessboard, screen
 from sys import exit
 
 running = True
