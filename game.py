@@ -2,8 +2,7 @@
 in the config.py file."""
 
 import pygame
-from config import BlackPieces, WhitePieces
-from config import SCREEN_HEIGHT, SCREEN_WIDTH, SQUARE_SIZE, BLACK_SQUARE, WHITE_SQUARE
+from config import *
 
 
 pygame.display.init()
@@ -11,173 +10,36 @@ screen_title = pygame.display.set_caption('Chess')
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 class Chessboard:
-    # TODO: We should be able to convert each of these into for loops. Remove all the duplicate code.
-    # TODO: We must also somehow assign the Chess Address variables here. (a1, b3, d8, etc.)
-    moves = [ # Sets up the chess notation.
-        {
-            'a8': (SQUARE_SIZE*0, SQUARE_SIZE*0),
-            'b8': (SQUARE_SIZE*1, SQUARE_SIZE*0),
-            'c8': (SQUARE_SIZE*2, SQUARE_SIZE*0),
-            'd8': (SQUARE_SIZE*3, SQUARE_SIZE*0),
-            'e8': (SQUARE_SIZE*4, SQUARE_SIZE*0),
-            'f8': (SQUARE_SIZE*5, SQUARE_SIZE*0),
-            'g8': (SQUARE_SIZE*6, SQUARE_SIZE*0),
-            'h8': (SQUARE_SIZE*7, SQUARE_SIZE*0)
-        },
-        {
-            'a7': (SQUARE_SIZE*0, SQUARE_SIZE*1),
-            'b7': (SQUARE_SIZE*1, SQUARE_SIZE*1),
-            'c7': (SQUARE_SIZE*2, SQUARE_SIZE*1),
-            'd7': (SQUARE_SIZE*3, SQUARE_SIZE*1),
-            'e7': (SQUARE_SIZE*4, SQUARE_SIZE*1),
-            'f7': (SQUARE_SIZE*5, SQUARE_SIZE*1),
-            'g7': (SQUARE_SIZE*6, SQUARE_SIZE*1),
-            'h7': (SQUARE_SIZE*7, SQUARE_SIZE*1)
-        },
-        {
-            'a6': (SQUARE_SIZE*0, SQUARE_SIZE*2),
-            'b6': (SQUARE_SIZE*1, SQUARE_SIZE*2),
-            'c6': (SQUARE_SIZE*2, SQUARE_SIZE*2),
-            'd6': (SQUARE_SIZE*3, SQUARE_SIZE*2),
-            'e6': (SQUARE_SIZE*4, SQUARE_SIZE*2),
-            'f6': (SQUARE_SIZE*5, SQUARE_SIZE*2),
-            'g6': (SQUARE_SIZE*6, SQUARE_SIZE*2),
-            'h6': (SQUARE_SIZE*7, SQUARE_SIZE*2)
-        },
-        {
-            'a5': (SQUARE_SIZE*0, SQUARE_SIZE*3),
-            'b5': (SQUARE_SIZE*1, SQUARE_SIZE*3),
-            'c5': (SQUARE_SIZE*2, SQUARE_SIZE*3),
-            'd5': (SQUARE_SIZE*3, SQUARE_SIZE*3),
-            'e5': (SQUARE_SIZE*4, SQUARE_SIZE*3),
-            'f5': (SQUARE_SIZE*5, SQUARE_SIZE*3),
-            'g5': (SQUARE_SIZE*6, SQUARE_SIZE*3),
-            'h5': (SQUARE_SIZE*7, SQUARE_SIZE*3)
-        },
-        {
-            'a4': (SQUARE_SIZE*0, SQUARE_SIZE*4),
-            'b4': (SQUARE_SIZE*1, SQUARE_SIZE*4),
-            'c4': (SQUARE_SIZE*2, SQUARE_SIZE*4),
-            'd4': (SQUARE_SIZE*3, SQUARE_SIZE*4),
-            'e4': (SQUARE_SIZE*4, SQUARE_SIZE*4),
-            'f4': (SQUARE_SIZE*5, SQUARE_SIZE*4),
-            'g4': (SQUARE_SIZE*6, SQUARE_SIZE*4),
-            'h4': (SQUARE_SIZE*7, SQUARE_SIZE*4)
-        },
-        {
-            'a3': (SQUARE_SIZE*0, SQUARE_SIZE*5),
-            'b3': (SQUARE_SIZE*1, SQUARE_SIZE*5),
-            'c3': (SQUARE_SIZE*2, SQUARE_SIZE*5),
-            'd3': (SQUARE_SIZE*3, SQUARE_SIZE*5),
-            'e3': (SQUARE_SIZE*4, SQUARE_SIZE*5),
-            'f3': (SQUARE_SIZE*5, SQUARE_SIZE*5),
-            'g3': (SQUARE_SIZE*6, SQUARE_SIZE*5),
-            'h3': (SQUARE_SIZE*7, SQUARE_SIZE*5)
-        },
-        {
-            'a2': (SQUARE_SIZE*0, SQUARE_SIZE*6),
-            'b2': (SQUARE_SIZE*1, SQUARE_SIZE*6),
-            'c2': (SQUARE_SIZE*2, SQUARE_SIZE*6),
-            'd2': (SQUARE_SIZE*3, SQUARE_SIZE*6),
-            'e2': (SQUARE_SIZE*4, SQUARE_SIZE*6),
-            'f2': (SQUARE_SIZE*5, SQUARE_SIZE*6),
-            'g2': (SQUARE_SIZE*6, SQUARE_SIZE*6),
-            'h2': (SQUARE_SIZE*7, SQUARE_SIZE*6)
-        },
-        {
-            'a1': (SQUARE_SIZE*0, SQUARE_SIZE*7),
-            'b1': (SQUARE_SIZE*1, SQUARE_SIZE*7),
-            'c1': (SQUARE_SIZE*2, SQUARE_SIZE*7),
-            'd1': (SQUARE_SIZE*3, SQUARE_SIZE*7),
-            'e1': (SQUARE_SIZE*4, SQUARE_SIZE*7),
-            'f1': (SQUARE_SIZE*5, SQUARE_SIZE*7),
-            'g1': (SQUARE_SIZE*6, SQUARE_SIZE*7),
-            'h1': (SQUARE_SIZE*7, SQUARE_SIZE*7)
-        }
-    ]
+    moves = ChessNotation.moves
 
     def create_chessboard():
+        # TODO: We should be able to convert each of these into for loops. Remove all the duplicate code.
+        
+        """Row is incremented after every loop so that we draw on the next row. The current_square
+        is changed from BLACK_SQUARE to WHITE_SQUARE and from WHITE_SQUARE to BLACK_SQUARE again and
+        again, because otherwise it would simply create a straight line of black and white squares.
+        In chess, the black and white squares are diaognal. Hence the constant switching from one to 
+        the other."""
+        
         row = 0
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*0, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*1, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*2, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*3, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*4, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*5, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*6, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*7, SQUARE_SIZE*row))
+        current_square = BLACK_SQUARE
+        for i in range(0, 8):
+            for j in range(0, 8):
+                if current_square == BLACK_SQUARE:
+                    screen.blit(BLACK_SQUARE, (SQUARE_SIZE*j, SQUARE_SIZE*row))
+                    current_square = WHITE_SQUARE
 
-        row = 1
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*0, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*1, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*2, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*3, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*4, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*5, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*6, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*7, SQUARE_SIZE*row))
-
-        row = 2
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*0, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*1, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*2, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*3, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*4, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*5, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*6, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*7, SQUARE_SIZE*row))
-
-        row = 3
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*0, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*1, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*2, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*3, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*4, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*5, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*6, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*7, SQUARE_SIZE*row))
-
-        row = 4
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*0, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*1, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*2, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*3, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*4, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*5, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*6, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*7, SQUARE_SIZE*row))
-
-        row = 5
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*0, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*1, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*2, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*3, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*4, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*5, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*6, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*7, SQUARE_SIZE*row))
-
-        row = 6
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*0, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*1, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*2, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*3, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*4, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*5, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*6, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*7, SQUARE_SIZE*row))
-
-        row = 7
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*0, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*1, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*2, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*3, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*4, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*5, SQUARE_SIZE*row))
-        screen.blit(WHITE_SQUARE, (SQUARE_SIZE*6, SQUARE_SIZE*row))
-        screen.blit(BLACK_SQUARE, (SQUARE_SIZE*7, SQUARE_SIZE*row))
-    
+                elif current_square == WHITE_SQUARE:
+                    screen.blit(WHITE_SQUARE, (SQUARE_SIZE*j, SQUARE_SIZE*row))
+                    current_square = BLACK_SQUARE
+            row += 1
+            if i % 2 == 1:
+                current_square = BLACK_SQUARE 
+            elif i % 2 == 0:
+                current_square = WHITE_SQUARE
+            
     def create_chess_pieces():
+        # BLACK PIECES
         screen.blit(BlackPieces.BLACK_KING, Chessboard.moves[0]['e8'])
         screen.blit(BlackPieces.BLACK_QUEEN, Chessboard.moves[0]['d8'])
 
@@ -190,9 +52,10 @@ class Chessboard:
         screen.blit(BlackPieces.BLACK_BISHOP, Chessboard.moves[0]['c8'])
         screen.blit(BlackPieces.BLACK_BISHOP, Chessboard.moves[0]['f8'])
 
-        for i in Chessboard.moves[1]:
+        for i in Chessboard.moves[1]: # CREATING BLACK PAWNS
             screen.blit(BlackPieces.BLACK_PAWN, Chessboard.moves[1][i])
 
+        # WHITE PIECES
         screen.blit(WhitePieces.WHITE_KING, Chessboard.moves[7]['e1'])
         screen.blit(WhitePieces.WHITE_QUEEN, Chessboard.moves[7]['d1'])
 
@@ -205,10 +68,12 @@ class Chessboard:
         screen.blit(WhitePieces.WHITE_BISHOP, Chessboard.moves[7]['c1'])
         screen.blit(WhitePieces.WHITE_BISHOP, Chessboard.moves[7]['f1'])
         
-        for i in Chessboard.moves[6]:
+        for i in Chessboard.moves[6]: # CREATING WHITE PAWNS
             screen.blit(WhitePieces.WHITE_PAWN, Chessboard.moves[6][i])
-
 
     def __init__(self):
         Chessboard.create_chessboard()
         Chessboard.create_chess_pieces()
+
+class Pieces:
+    moves = ChessNotation.moves
