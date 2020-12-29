@@ -47,7 +47,7 @@ class WhitePieces:
 
 class ChessNotation:
      moves = [ # Sets up the chess notation.
-        {
+        { #Row: 0
             'a8': (SQUARE_SIZE*0, SQUARE_SIZE*0),
             'b8': (SQUARE_SIZE*1, SQUARE_SIZE*0),
             'c8': (SQUARE_SIZE*2, SQUARE_SIZE*0),
@@ -57,7 +57,7 @@ class ChessNotation:
             'g8': (SQUARE_SIZE*6, SQUARE_SIZE*0),
             'h8': (SQUARE_SIZE*7, SQUARE_SIZE*0)
         },
-        {
+        { #Row: 1
             'a7': (SQUARE_SIZE*0, SQUARE_SIZE*1),
             'b7': (SQUARE_SIZE*1, SQUARE_SIZE*1),
             'c7': (SQUARE_SIZE*2, SQUARE_SIZE*1),
@@ -67,7 +67,7 @@ class ChessNotation:
             'g7': (SQUARE_SIZE*6, SQUARE_SIZE*1),
             'h7': (SQUARE_SIZE*7, SQUARE_SIZE*1)
         },
-        {
+        { #Row: 2
             'a6': (SQUARE_SIZE*0, SQUARE_SIZE*2),
             'b6': (SQUARE_SIZE*1, SQUARE_SIZE*2),
             'c6': (SQUARE_SIZE*2, SQUARE_SIZE*2),
@@ -77,7 +77,7 @@ class ChessNotation:
             'g6': (SQUARE_SIZE*6, SQUARE_SIZE*2),
             'h6': (SQUARE_SIZE*7, SQUARE_SIZE*2)
         },
-        {
+        { #Row: 3
             'a5': (SQUARE_SIZE*0, SQUARE_SIZE*3),
             'b5': (SQUARE_SIZE*1, SQUARE_SIZE*3),
             'c5': (SQUARE_SIZE*2, SQUARE_SIZE*3),
@@ -87,7 +87,7 @@ class ChessNotation:
             'g5': (SQUARE_SIZE*6, SQUARE_SIZE*3),
             'h5': (SQUARE_SIZE*7, SQUARE_SIZE*3)
         },
-        {
+        { #Row: 4
             'a4': (SQUARE_SIZE*0, SQUARE_SIZE*4),
             'b4': (SQUARE_SIZE*1, SQUARE_SIZE*4),
             'c4': (SQUARE_SIZE*2, SQUARE_SIZE*4),
@@ -97,7 +97,7 @@ class ChessNotation:
             'g4': (SQUARE_SIZE*6, SQUARE_SIZE*4),
             'h4': (SQUARE_SIZE*7, SQUARE_SIZE*4)
         },
-        {
+        { #Row: 5
             'a3': (SQUARE_SIZE*0, SQUARE_SIZE*5),
             'b3': (SQUARE_SIZE*1, SQUARE_SIZE*5),
             'c3': (SQUARE_SIZE*2, SQUARE_SIZE*5),
@@ -107,7 +107,7 @@ class ChessNotation:
             'g3': (SQUARE_SIZE*6, SQUARE_SIZE*5),
             'h3': (SQUARE_SIZE*7, SQUARE_SIZE*5)
         },
-        {
+        { #Row: 6
             'a2': (SQUARE_SIZE*0, SQUARE_SIZE*6),
             'b2': (SQUARE_SIZE*1, SQUARE_SIZE*6),
             'c2': (SQUARE_SIZE*2, SQUARE_SIZE*6),
@@ -117,7 +117,7 @@ class ChessNotation:
             'g2': (SQUARE_SIZE*6, SQUARE_SIZE*6),
             'h2': (SQUARE_SIZE*7, SQUARE_SIZE*6)
         },
-        {
+        { #Row: 7
             'a1': (SQUARE_SIZE*0, SQUARE_SIZE*7),
             'b1': (SQUARE_SIZE*1, SQUARE_SIZE*7),
             'c1': (SQUARE_SIZE*2, SQUARE_SIZE*7),
