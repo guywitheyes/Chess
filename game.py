@@ -42,43 +42,18 @@ class Chessboard:
                     current_square = WHITE_SQUARE
         except Exception:
             logging.critical(f'{CURRENT_TIME} - An unexpected error occured while creating the chessboard. The chessboard could not be created.')
-            
-    def create_chess_pieces():
-        # BLACK PIECES
-        screen.blit(BlackPieces.BLACK_KING, Chessboard.moves[0]['e8'])
-        screen.blit(BlackPieces.BLACK_QUEEN, Chessboard.moves[0]['d8'])
-
-        screen.blit(BlackPieces.BLACK_ROOK, Chessboard.moves[0]['a8'])
-        screen.blit(BlackPieces.BLACK_ROOK, Chessboard.moves[0]['h8'])
-
-        screen.blit(BlackPieces.BLACK_KNIGHT, Chessboard.moves[0]['b8'])
-        screen.blit(BlackPieces.BLACK_KNIGHT, Chessboard.moves[0]['g8'])
-
-        screen.blit(BlackPieces.BLACK_BISHOP, Chessboard.moves[0]['c8'])
-        screen.blit(BlackPieces.BLACK_BISHOP, Chessboard.moves[0]['f8'])
-
-        for i in Chessboard.moves[1]: # CREATING BLACK PAWNS
-            screen.blit(BlackPieces.BLACK_PAWN, Chessboard.moves[1][i])
-
-        # WHITE PIECES
-        screen.blit(WhitePieces.WHITE_KING, Chessboard.moves[7]['e1'])
-        screen.blit(WhitePieces.WHITE_QUEEN, Chessboard.moves[7]['d1'])
-
-        screen.blit(WhitePieces.WHITE_ROOK, Chessboard.moves[7]['a1'])
-        screen.blit(WhitePieces.WHITE_ROOK, Chessboard.moves[7]['h1'])
-
-        screen.blit(WhitePieces.WHITE_KNIGHT, Chessboard.moves[7]['b1'])
-        screen.blit(WhitePieces.WHITE_KNIGHT, Chessboard.moves[7]['g1'])
-
-        screen.blit(WhitePieces.WHITE_BISHOP, Chessboard.moves[7]['c1'])
-        screen.blit(WhitePieces.WHITE_BISHOP, Chessboard.moves[7]['f1'])
         
-        for i in Chessboard.moves[6]: # CREATING WHITE PAWNS
-            screen.blit(WhitePieces.WHITE_PAWN, Chessboard.moves[6][i])
 
     def __init__(self):
         Chessboard.create_chessboard()
-        Chessboard.create_chess_pieces()
 
 class Pieces:
     moves = ChessNotation.moves
+    
+
+    # print(BLACK_BISHOP_BLIT1)
+    # return (BLACK_KING_BLIT, WHITE_KING_BLIT, BLACK_QUEEN_BLIT, WHITE_QUEEN_BLIT, WHITE_ROOK_BLIT2,
+    # BLACK_ROOK_BLIT1, BLACK_ROOK_BLIT2, WHITE_ROOK_BLIT1, BLACK_KNIGHT_BLIT1, WHITE_KNIGHT_BLIT1,
+    # WHITE_KNIGHT_BLIT2, BLACK_BISHOP_BLIT1, WHITE_BISHOP_BLIT1, WHITE_BISHOP_BLIT2,
+    # BLACK_KNIGHT_BLIT2, BLACK_BISHOP_BLIT2)
+    
