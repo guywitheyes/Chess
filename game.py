@@ -3,9 +3,10 @@ in the config.py file."""
 
 import pygame
 from config import (SCREEN_WIDTH, SCREEN_HEIGHT, BLACK_SQUARE, WHITE_SQUARE, 
-                    SQUARE_SIZE, PieceImages, Position, ChessNotation, 
+                    SQUARE_SIZE, PieceImages, BlackPosition, WhitePosition, ChessNotation, 
                     CURRENT_DATE, CURRENT_TIME)
 import logging
+from database.moves import moves
 
 logging.basicConfig(filename=f"logs/{str(CURRENT_DATE)}.log", filemode='a', level=logging.DEBUG)
 
@@ -14,8 +15,6 @@ screen_title = pygame.display.set_caption('Chess')
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 class Chessboard:
-    moves = ChessNotation.moves
-
     def create_chessboard():
         """Row is incremented after every loop so that we draw on the next row. The current_square
         is changed from BLACK_SQUARE to WHITE_SQUARE and from WHITE_SQUARE to BLACK_SQUARE again and
@@ -47,17 +46,17 @@ class Chessboard:
     def create_chess_pieces():
         # BLACK PIECES
         try:
-            Chessboard.BLACK_KING_BLIT = screen.blit(PieceImages.BLACK_KING, Position.BlackPosition.BLACK_KING_POSITION)
-            Chessboard.BLACK_QUEEN_BLIT = screen.blit(PieceImages.BLACK_QUEEN, Position.BlackPosition.BLACK_QUEEN_POSITION)
+            Chessboard.BLACK_KING_BLIT = screen.blit(PieceImages.BLACK_KING, BlackPosition.BLACK_KING_POSITION)
+            Chessboard.BLACK_QUEEN_BLIT = screen.blit(PieceImages.BLACK_QUEEN, BlackPosition.BLACK_QUEEN_POSITION)
 
-            Chessboard.BLACK_ROOK_RIGHT_BLIT = screen.blit(PieceImages.BLACK_ROOK, Position.BlackPosition.BLACK_RIGHT_ROOK_POSITION)
-            Chessboard.BLACK_ROOK_LEFT_BLIT = screen.blit(PieceImages.BLACK_ROOK, Position.BlackPosition.BLACK_LEFT_ROOK_POSITION)
+            Chessboard.BLACK_ROOK_RIGHT_BLIT = screen.blit(PieceImages.BLACK_ROOK, BlackPosition.BLACK_RIGHT_ROOK_POSITION)
+            Chessboard.BLACK_ROOK_LEFT_BLIT = screen.blit(PieceImages.BLACK_ROOK, BlackPosition.BLACK_LEFT_ROOK_POSITION)
 
-            Chessboard.BLACK_KNIGHT_RIGHT_BLIT = screen.blit(PieceImages.BLACK_KNIGHT, Position.BlackPosition.BLACK_RIGHT_KNIGHT_POSITION)
-            Chessboard.BLACK_KNIGHT_LEFT_BLIT = screen.blit(PieceImages.BLACK_KNIGHT, Position.BlackPosition.BLACK_LEFT_KNIGHT_POSITION)
+            Chessboard.BLACK_KNIGHT_RIGHT_BLIT = screen.blit(PieceImages.BLACK_KNIGHT, BlackPosition.BLACK_RIGHT_KNIGHT_POSITION)
+            Chessboard.BLACK_KNIGHT_LEFT_BLIT = screen.blit(PieceImages.BLACK_KNIGHT, BlackPosition.BLACK_LEFT_KNIGHT_POSITION)
 
-            Chessboard.BLACK_BISHOP_RIGHT_BLIT = screen.blit(PieceImages.BLACK_BISHOP, Position.BlackPosition.BLACK_RIGHT_BISHOP_POSITION)
-            Chessboard.BLACK_BISHOP_LEFT_BLIT = screen.blit(PieceImages.BLACK_BISHOP, Position.BlackPosition.BLACK_LEFT_BISHOP_POSITION)
+            Chessboard.BLACK_BISHOP_RIGHT_BLIT = screen.blit(PieceImages.BLACK_BISHOP, BlackPosition.BLACK_RIGHT_BISHOP_POSITION)
+            Chessboard.BLACK_BISHOP_LEFT_BLIT = screen.blit(PieceImages.BLACK_BISHOP, BlackPosition.BLACK_LEFT_BISHOP_POSITION)
 
             # TODO: To track each individual pawn, we'll have to create them one by one, without using for loops. It's gonna be repetitive code, but we've got no choice. Do it.
             # for i in Chessboard.moves[0]: # CREATING BLACK PAWNS
@@ -65,39 +64,39 @@ class Chessboard:
             #         screen.blit(PieceImages.BLACK_PAWN, Chessboard.moves[0][i])
             
             # CREATING BLACK PAWNS
-            Chessboard.BLACK_PAWN_A7_BLIT = screen.blit(PieceImages.BLACK_PAWN, Position.BlackPosition.BLACK_PAWN_A7_POSITION)
-            Chessboard.BLACK_PAWN_B7_BLIT = screen.blit(PieceImages.BLACK_PAWN, Position.BlackPosition.BLACK_PAWN_B7_POSITION)
-            Chessboard.BLACK_PAWN_C7_BLIT = screen.blit(PieceImages.BLACK_PAWN, Position.BlackPosition.BLACK_PAWN_C7_POSITION)
-            Chessboard.BLACK_PAWN_D7_BLIT = screen.blit(PieceImages.BLACK_PAWN, Position.BlackPosition.BLACK_PAWN_D7_POSITION)
-            Chessboard.BLACK_PAWN_E7_BLIT = screen.blit(PieceImages.BLACK_PAWN, Position.BlackPosition.BLACK_PAWN_E7_POSITION)
-            Chessboard.BLACK_PAWN_F7_BLIT = screen.blit(PieceImages.BLACK_PAWN, Position.BlackPosition.BLACK_PAWN_F7_POSITION)
-            Chessboard.BLACK_PAWN_G7_BLIT = screen.blit(PieceImages.BLACK_PAWN, Position.BlackPosition.BLACK_PAWN_G7_POSITION)
-            Chessboard.BLACK_PAWN_H7_BLIT = screen.blit(PieceImages.BLACK_PAWN, Position.BlackPosition.BLACK_PAWN_H7_POSITION)
+            Chessboard.BLACK_PAWN_A7_BLIT = screen.blit(PieceImages.BLACK_PAWN, BlackPosition.BLACK_PAWN_A7_POSITION)
+            Chessboard.BLACK_PAWN_B7_BLIT = screen.blit(PieceImages.BLACK_PAWN, BlackPosition.BLACK_PAWN_B7_POSITION)
+            Chessboard.BLACK_PAWN_C7_BLIT = screen.blit(PieceImages.BLACK_PAWN, BlackPosition.BLACK_PAWN_C7_POSITION)
+            Chessboard.BLACK_PAWN_D7_BLIT = screen.blit(PieceImages.BLACK_PAWN, BlackPosition.BLACK_PAWN_D7_POSITION)
+            Chessboard.BLACK_PAWN_E7_BLIT = screen.blit(PieceImages.BLACK_PAWN, BlackPosition.BLACK_PAWN_E7_POSITION)
+            Chessboard.BLACK_PAWN_F7_BLIT = screen.blit(PieceImages.BLACK_PAWN, BlackPosition.BLACK_PAWN_F7_POSITION)
+            Chessboard.BLACK_PAWN_G7_BLIT = screen.blit(PieceImages.BLACK_PAWN, BlackPosition.BLACK_PAWN_G7_POSITION)
+            Chessboard.BLACK_PAWN_H7_BLIT = screen.blit(PieceImages.BLACK_PAWN, BlackPosition.BLACK_PAWN_H7_POSITION)
 
             # ----------------------------------------------------------------------------------------------
 
             # WHITE PIECES
-            Chessboard.WHITE_KING_BLIT = screen.blit(PieceImages.WHITE_KING, Position.WhitePosition.WHITE_KING_POSITION)
-            Chessboard.WHITE_QUEEN_BLIT = screen.blit(PieceImages.WHITE_QUEEN, Position.WhitePosition.WHITE_QUEEN_POSITION)
+            Chessboard.WHITE_KING_BLIT = screen.blit(PieceImages.WHITE_KING, WhitePosition.WHITE_KING_POSITION)
+            Chessboard.WHITE_QUEEN_BLIT = screen.blit(PieceImages.WHITE_QUEEN, WhitePosition.WHITE_QUEEN_POSITION)
 
-            Chessboard.WHITE_ROOK_BLIT1 = screen.blit(PieceImages.WHITE_ROOK, Position.WhitePosition.WHITE_RIGHT_ROOK_POSITION)
-            Chessboard.WHITE_ROOK_BLIT2 = screen.blit(PieceImages.WHITE_ROOK, Position.WhitePosition.WHITE_LEFT_ROOK_POSITION)
+            Chessboard.WHITE_ROOK_BLIT1 = screen.blit(PieceImages.WHITE_ROOK, WhitePosition.WHITE_RIGHT_ROOK_POSITION)
+            Chessboard.WHITE_ROOK_BLIT2 = screen.blit(PieceImages.WHITE_ROOK, WhitePosition.WHITE_LEFT_ROOK_POSITION)
 
-            Chessboard.WHITE_KNIGHT_BLIT1 = screen.blit(PieceImages.WHITE_KNIGHT, Position.WhitePosition.WHITE_RIGHT_KNIGHT_POSITION)
-            Chessboard.WHITE_KNIGHT_BLIT2 = screen.blit(PieceImages.WHITE_KNIGHT, Position.WhitePosition.WHITE_LEFT_KNIGHT_POSITION)
+            Chessboard.WHITE_KNIGHT_BLIT1 = screen.blit(PieceImages.WHITE_KNIGHT, WhitePosition.WHITE_RIGHT_KNIGHT_POSITION)
+            Chessboard.WHITE_KNIGHT_BLIT2 = screen.blit(PieceImages.WHITE_KNIGHT, WhitePosition.WHITE_LEFT_KNIGHT_POSITION)
 
-            Chessboard.WHITE_BISHOP_BLIT1 = screen.blit(PieceImages.WHITE_BISHOP, Position.WhitePosition.WHITE_RIGHT_BISHOP_POSITION)
-            Chessboard.WHITE_BISHOP_BLIT2 = screen.blit(PieceImages.WHITE_BISHOP, Position.WhitePosition.WHITE_LEFT_BISHOP_POSITION)
+            Chessboard.WHITE_BISHOP_BLIT1 = screen.blit(PieceImages.WHITE_BISHOP, WhitePosition.WHITE_RIGHT_BISHOP_POSITION)
+            Chessboard.WHITE_BISHOP_BLIT2 = screen.blit(PieceImages.WHITE_BISHOP, WhitePosition.WHITE_LEFT_BISHOP_POSITION)
             
             # CREATING WHITE PAWNS
-            Chessboard.WHITE_PAWN_A7_BLIT = screen.blit(PieceImages.WHITE_PAWN, Position.WhitePosition.WHITE_PAWN_A7_POSITION)
-            Chessboard.WHITE_PAWN_B7_BLIT = screen.blit(PieceImages.WHITE_PAWN, Position.WhitePosition.WHITE_PAWN_B7_POSITION)
-            Chessboard.WHITE_PAWN_C7_BLIT = screen.blit(PieceImages.WHITE_PAWN, Position.WhitePosition.WHITE_PAWN_C7_POSITION)
-            Chessboard.WHITE_PAWN_D7_BLIT = screen.blit(PieceImages.WHITE_PAWN, Position.WhitePosition.WHITE_PAWN_D7_POSITION)
-            Chessboard.WHITE_PAWN_E7_BLIT = screen.blit(PieceImages.WHITE_PAWN, Position.WhitePosition.WHITE_PAWN_E7_POSITION)
-            Chessboard.WHITE_PAWN_F7_BLIT = screen.blit(PieceImages.WHITE_PAWN, Position.WhitePosition.WHITE_PAWN_F7_POSITION)
-            Chessboard.WHITE_PAWN_G7_BLIT = screen.blit(PieceImages.WHITE_PAWN, Position.WhitePosition.WHITE_PAWN_G7_POSITION)
-            Chessboard.WHITE_PAWN_H7_BLIT = screen.blit(PieceImages.WHITE_PAWN, Position.WhitePosition.WHITE_PAWN_H7_POSITION)
+            Chessboard.WHITE_PAWN_A7_BLIT = screen.blit(PieceImages.WHITE_PAWN, WhitePosition.WHITE_PAWN_A7_POSITION)
+            Chessboard.WHITE_PAWN_B7_BLIT = screen.blit(PieceImages.WHITE_PAWN, WhitePosition.WHITE_PAWN_B7_POSITION)
+            Chessboard.WHITE_PAWN_C7_BLIT = screen.blit(PieceImages.WHITE_PAWN, WhitePosition.WHITE_PAWN_C7_POSITION)
+            Chessboard.WHITE_PAWN_D7_BLIT = screen.blit(PieceImages.WHITE_PAWN, WhitePosition.WHITE_PAWN_D7_POSITION)
+            Chessboard.WHITE_PAWN_E7_BLIT = screen.blit(PieceImages.WHITE_PAWN, WhitePosition.WHITE_PAWN_E7_POSITION)
+            Chessboard.WHITE_PAWN_F7_BLIT = screen.blit(PieceImages.WHITE_PAWN, WhitePosition.WHITE_PAWN_F7_POSITION)
+            Chessboard.WHITE_PAWN_G7_BLIT = screen.blit(PieceImages.WHITE_PAWN, WhitePosition.WHITE_PAWN_G7_POSITION)
+            Chessboard.WHITE_PAWN_H7_BLIT = screen.blit(PieceImages.WHITE_PAWN, WhitePosition.WHITE_PAWN_H7_POSITION)
 
 
         # FIXME: Since this function runs in the game loop, it keeps logging the same message over and over again. Fix this somehow.
