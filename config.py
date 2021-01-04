@@ -4,10 +4,6 @@ from datetime import datetime
 from database.moves import moves, default_positions
 import logging
 
-# TODO: Since so much code in this project (not just this file) is repetitive, we will later move it to a JSON file or something
-# so that we can reduce the repetitive code. This will likely shorten our entire project's code by hundreds of lines. Let's do this
-# after the project has been completed. I don't want to deal with cleaning the code until the project has made substantial progress.
-
 BLACK_SQUARE = pygame.image.load('assets/black-square.png')
 WHITE_SQUARE = pygame.image.load('assets/white-square.png')
 SQUARE_SIZE = 50
