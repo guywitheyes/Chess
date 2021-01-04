@@ -3,10 +3,9 @@ in the config.py file."""
 
 import pygame
 from config import (SCREEN_WIDTH, SCREEN_HEIGHT, BLACK_SQUARE, WHITE_SQUARE, 
-                    SQUARE_SIZE, PieceImages, BlackPosition, WhitePosition, ChessNotation, 
+                    SQUARE_SIZE, PieceImages, BlackPosition, WhitePosition,  
                     CURRENT_DATE, CURRENT_TIME)
 import logging
-from database.moves import moves
 
 logging.basicConfig(filename=f"logs/{str(CURRENT_DATE)}.log", filemode='a', level=logging.DEBUG)
 
