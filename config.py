@@ -191,7 +191,8 @@ class PieceCoordinates:
         """Takes in the X and Y coordinates of the mouseclick as an argument. These are provided by
         the event.pos in the game loop, which is in app.py. This function will check the entire chess 
         board, row by row, for which square was clicked."""
-        def check_row_8():
+        def check_rows():
+            # ROW 8
             if x_coords in (cls.zero_to_fifty) and y_coords in (cls.zero_to_fifty):
                 return 'a8'
             elif x_coords in (cls.fifty_to_onehundred) and y_coords in (cls.zero_to_fifty):
@@ -208,8 +209,8 @@ class PieceCoordinates:
                 return 'g8'
             elif x_coords in (cls.threefifty_to_fourhundred) and y_coords in (cls.zero_to_fifty):
                 return 'h8'
-        
-        def check_row_7():
+
+            # ROW 7
             if x_coords in (cls.zero_to_fifty) and y_coords in (cls.fifty_to_onehundred):
                 return 'a7'
             elif x_coords in (cls.fifty_to_onehundred) and y_coords in (cls.fifty_to_onehundred):
@@ -226,10 +227,8 @@ class PieceCoordinates:
                 return 'g7'
             elif x_coords in (cls.threefifty_to_fourhundred) and y_coords in (cls.fifty_to_onehundred):
                 return 'h7'
-            else:
-                return None
-            
-        def check_row_6():
+        
+            # ROW 6
             if x_coords in (cls.zero_to_fifty) and y_coords in (cls.onehundred_to_onefifty):
                 return 'a6'
             elif x_coords in (cls.fifty_to_onehundred) and y_coords in (cls.onehundred_to_onefifty):
@@ -246,8 +245,8 @@ class PieceCoordinates:
                 return 'g6'
             elif x_coords in (cls.threefifty_to_fourhundred) and y_coords in (cls.onehundred_to_onefifty):
                 return 'h6'
-        
-        def check_row_5():
+
+            # ROW 5
             if x_coords in (cls.zero_to_fifty) and y_coords in (cls.onefifty_to_twohundred):
                 return 'a5'
             elif x_coords in (cls.fifty_to_onehundred) and y_coords in (cls.onefifty_to_twohundred):
@@ -264,8 +263,8 @@ class PieceCoordinates:
                 return 'g5'
             elif x_coords in (cls.threefifty_to_fourhundred) and y_coords in (cls.onefifty_to_twohundred):
                 return 'h5'
-            
-        def check_row_4():
+
+            # ROW 4
             if x_coords in (cls.zero_to_fifty) and y_coords in (cls.twohundred_to_twofifty):
                 return 'a4'
             elif x_coords in (cls.fifty_to_onehundred) and y_coords in (cls.twohundred_to_twofifty):
@@ -282,8 +281,8 @@ class PieceCoordinates:
                 return 'g4'
             elif x_coords in (cls.threefifty_to_fourhundred) and y_coords in (cls.twohundred_to_twofifty):
                 return 'h4'
-        
-        def check_row_3():
+
+            # ROW 3
             if x_coords in (cls.zero_to_fifty) and y_coords in (cls.twofifty_to_threehundred):
                 return 'a3'
             elif x_coords in (cls.fifty_to_onehundred) and y_coords in (cls.twofifty_to_threehundred):
@@ -301,7 +300,7 @@ class PieceCoordinates:
             elif x_coords in (cls.threefifty_to_fourhundred) and y_coords in (cls.twofifty_to_threehundred):
                 return 'h3'
             
-        def check_row_2():
+            # ROW 2
             if x_coords in (cls.zero_to_fifty) and y_coords in (cls.threehundred_to_threefifty):
                 return 'a2'
             elif x_coords in (cls.fifty_to_onehundred) and y_coords in (cls.threehundred_to_threefifty):
@@ -319,7 +318,7 @@ class PieceCoordinates:
             elif x_coords in (cls.threefifty_to_fourhundred) and y_coords in (cls.threehundred_to_threefifty):
                 return 'h2'
 
-        def check_row_1():
+            # ROW 1
             if x_coords in (cls.zero_to_fifty) and y_coords in (cls.threefifty_to_fourhundred):
                 return 'a1'
             elif x_coords in (cls.fifty_to_onehundred) and y_coords in (cls.threefifty_to_fourhundred):
@@ -337,28 +336,7 @@ class PieceCoordinates:
             elif x_coords in (cls.threefifty_to_fourhundred) and y_coords in (cls.threefifty_to_fourhundred):
                 return 'h1'
 
-        returned_address = check_row_8()
-
-        if returned_address == None:
-            returned_address = check_row_7()
-
-        if returned_address == None:
-            returned_address = check_row_6()
-            
-        if returned_address == None:
-            returned_address = check_row_5()
-
-        if returned_address == None:
-            returned_address = check_row_4()
-
-        if returned_address == None:
-            returned_address = check_row_3()
-
-        if returned_address == None:
-            returned_address = check_row_2()
-
-        if returned_address == None:
-            returned_address = check_row_1()
+        returned_address = check_rows()
 
         if returned_address == None:
             logging.error(f"{CURRENT_TIME} - The program failed to check the selected piece's coordinates.")
