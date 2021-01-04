@@ -1,7 +1,8 @@
 import pygame
 from itertools import count
 from datetime import datetime
-from database.moves import moves, default_positions
+from database.moves import moves, BlackPosition, WhitePosition
+from database.load_piece_images import PieceImages
 import logging
 
 BLACK_SQUARE = pygame.image.load('assets/black-square.png')
@@ -13,57 +14,7 @@ SQUARE_SIZE = 50
 CURRENT_DATE = str(datetime.today().date().__str__()) # Used mostly in logging messages.
 CURRENT_TIME = str(datetime.now().time().__str__()) # Used mostly in logging messages.
 
-class PieceImages:
-    """Loads the PNG images of all Chess pieces icons."""
-    
-    #BLACK: ------------------------------------------------
-    BLACK_KING = pygame.image.load('assets/pieces/bk.png')
-    BLACK_KING = pygame.transform.scale(BLACK_KING, (50, 50))
-
-    BLACK_QUEEN = pygame.image.load('assets/pieces/bq.png')
-    BLACK_QUEEN = pygame.transform.scale(BLACK_QUEEN, (50, 50))
-
-    BLACK_ROOK = pygame.image.load('assets/pieces/br.png')
-    BLACK_ROOK = pygame.transform.scale(BLACK_ROOK, (50, 50))
-
-    BLACK_KNIGHT = pygame.image.load('assets/pieces/bn.png')
-    BLACK_KNIGHT = pygame.transform.scale(BLACK_KNIGHT, (50, 50))
-
-    BLACK_BISHOP = pygame.image.load('assets/pieces/bb.png')
-    BLACK_BISHOP = pygame.transform.scale(BLACK_BISHOP, (50, 50))
-
-    BLACK_PAWN = pygame.image.load('assets/pieces/bp.png')
-    BLACK_PAWN = pygame.transform.scale(BLACK_PAWN, (50, 50))
-    
-    #WHITE: ------------------------------------------------
-    WHITE_KING = pygame.image.load('assets/pieces/wk.png')
-    WHITE_KING = pygame.transform.scale(WHITE_KING, (50, 50))
-
-    WHITE_QUEEN = pygame.image.load('assets/pieces/wq.png')
-    WHITE_QUEEN = pygame.transform.scale(WHITE_QUEEN, (50, 50))
-
-    WHITE_ROOK = pygame.image.load('assets/pieces/wr.png')
-    WHITE_ROOK = pygame.transform.scale(WHITE_ROOK, (50, 50))
-    
-    WHITE_KNIGHT = pygame.image.load('assets/pieces/wn.png')
-    WHITE_KNIGHT = pygame.transform.scale(WHITE_KNIGHT, (50, 50))
-
-    WHITE_BISHOP = pygame.image.load('assets/pieces/wb.png')
-    WHITE_BISHOP = pygame.transform.scale(WHITE_BISHOP, (50, 50))
-
-    WHITE_PAWN = pygame.image.load('assets/pieces/wp.png')
-    WHITE_PAWN = pygame.transform.scale(WHITE_PAWN, (50, 50))   
-
-class ChessNotation:
-    """Contains chess notation, addresses, and other similar things."""
-    # TODO: Move this default_positions dictionary to a JSON database.
-    # Contains the starting positions of both Black and White pieces.
-    
-
 class Position:
-    black_dp = default_positions[0]["Black"]
-    white_dp = default_positions[1]["White"]
-
     @classmethod
     def select_piece(cls, piece):
         pass
@@ -78,107 +29,47 @@ class Position:
             # Until you've built this function fully, here's how the pieces are actually moved: (in case you forget)
             piece = moves[position]
 
-class BlackPosition(Position):
-    BLACK_KING_POSITION = moves[(Position.black_dp["king"])]
-    BLACK_QUEEN_POSITION = moves[(Position.black_dp["queen"])]
-
-    BLACK_RIGHT_ROOK_POSITION = moves[(Position.black_dp["right_rook"])]
-    BLACK_LEFT_ROOK_POSITION = moves[(Position.black_dp["left_rook"])]
-    BLACK_RIGHT_KNIGHT_POSITION = moves[(Position.black_dp["right_knight"])]
-    BLACK_LEFT_KNIGHT_POSITION = moves[(Position.black_dp["left_knight"])]
-    BLACK_RIGHT_BISHOP_POSITION = moves[(Position.black_dp["right_bishop"])]
-    BLACK_LEFT_BISHOP_POSITION = moves[(Position.black_dp["left_bishop"])]
-
-    BLACK_PAWN_A7_POSITION = moves[(Position.black_dp["pawn1"])]
-    BLACK_PAWN_B7_POSITION = moves[(Position.black_dp["pawn2"])]
-    BLACK_PAWN_C7_POSITION = moves[(Position.black_dp["pawn3"])]
-    BLACK_PAWN_D7_POSITION = moves[(Position.black_dp["pawn4"])]
-    BLACK_PAWN_E7_POSITION = moves[(Position.black_dp["pawn5"])]
-    BLACK_PAWN_F7_POSITION = moves[(Position.black_dp["pawn6"])]
-    BLACK_PAWN_G7_POSITION = moves[(Position.black_dp["pawn7"])]
-    BLACK_PAWN_H7_POSITION = moves[(Position.black_dp["pawn8"])]
-
-
-    BLACK_PIECES_ALL_POSITIONS = [BLACK_KING_POSITION, BLACK_QUEEN_POSITION, BLACK_RIGHT_ROOK_POSITION, 
-                                BLACK_LEFT_ROOK_POSITION, BLACK_RIGHT_KNIGHT_POSITION, 
-                                BLACK_LEFT_KNIGHT_POSITION, BLACK_RIGHT_BISHOP_POSITION, 
-                                BLACK_LEFT_BISHOP_POSITION, BLACK_PAWN_A7_POSITION,
-                                BLACK_PAWN_B7_POSITION, BLACK_PAWN_C7_POSITION, BLACK_PAWN_D7_POSITION, 
-                                BLACK_PAWN_E7_POSITION, BLACK_PAWN_F7_POSITION, BLACK_PAWN_G7_POSITION,
-                                BLACK_PAWN_H7_POSITION]
-
-# TODO: Add the POSITIONs for all the white pieces, including white pawns.
-class WhitePosition(Position):
-    WHITE_KING_POSITION = moves[(Position.white_dp["king"])]
-    WHITE_QUEEN_POSITION = moves[(Position.white_dp["queen"])]
-
-    WHITE_RIGHT_ROOK_POSITION = moves[(Position.white_dp["right_rook"])]
-    WHITE_LEFT_ROOK_POSITION = moves[(Position.white_dp["left_rook"])]
-    WHITE_RIGHT_KNIGHT_POSITION = moves[(Position.white_dp["right_knight"])]
-    WHITE_LEFT_KNIGHT_POSITION = moves[(Position.white_dp["left_knight"])]
-    WHITE_RIGHT_BISHOP_POSITION = moves[(Position.white_dp["right_bishop"])]
-    WHITE_LEFT_BISHOP_POSITION = moves[(Position.white_dp["left_bishop"])]
-
-    WHITE_PAWN_A7_POSITION = moves[(Position.white_dp["pawn1"])]
-    WHITE_PAWN_B7_POSITION = moves[(Position.white_dp["pawn2"])]
-    WHITE_PAWN_C7_POSITION = moves[(Position.white_dp["pawn3"])]
-    WHITE_PAWN_D7_POSITION = moves[(Position.white_dp["pawn4"])]
-    WHITE_PAWN_E7_POSITION = moves[(Position.white_dp["pawn5"])]
-    WHITE_PAWN_F7_POSITION = moves[(Position.white_dp["pawn6"])]
-    WHITE_PAWN_G7_POSITION = moves[(Position.white_dp["pawn7"])]
-    WHITE_PAWN_H7_POSITION = moves[(Position.white_dp["pawn8"])]
-
-
-    WHITE_PIECES_ALL_POSITIONS = [WHITE_KING_POSITION, WHITE_QUEEN_POSITION, WHITE_RIGHT_ROOK_POSITION, 
-                                WHITE_LEFT_ROOK_POSITION, WHITE_RIGHT_KNIGHT_POSITION, 
-                                WHITE_LEFT_KNIGHT_POSITION, WHITE_RIGHT_BISHOP_POSITION, 
-                                WHITE_LEFT_BISHOP_POSITION, WHITE_PAWN_A7_POSITION,
-                                WHITE_PAWN_B7_POSITION, WHITE_PAWN_C7_POSITION, WHITE_PAWN_D7_POSITION, 
-                                WHITE_PAWN_E7_POSITION, WHITE_PAWN_F7_POSITION, WHITE_PAWN_G7_POSITION,
-                                WHITE_PAWN_H7_POSITION]
-        
-
 class PieceCoordinates:
     """Contains the coordinates of each square in the game. The size of each square is 50 and that's 
     what the calculations here are based on."""
 
     zero_to_fifty = []
-    count_for_zero_to_fifty = count(start=0, step=1)
+    count_for_zero_to_fifty = count(start=SQUARE_SIZE*0, step=1)
     for _ in range(51):
         zero_to_fifty.append(next(count_for_zero_to_fifty))
 
     fifty_to_onehundred = []
-    count_for_fifty_to_onehundred = count(start=50, step=1)
+    count_for_fifty_to_onehundred = count(start=SQUARE_SIZE*1, step=1)
     for _ in range(50, 101):
         fifty_to_onehundred.append(next(count_for_fifty_to_onehundred))
 
     onehundred_to_onefifty = []
-    count_for_onehundred_to_onefifty = count(start=100, step=1)
+    count_for_onehundred_to_onefifty = count(start=SQUARE_SIZE*2, step=1)
     for _ in range(100, 151):
         onehundred_to_onefifty.append(next(count_for_onehundred_to_onefifty))
 
     onefifty_to_twohundred = []
-    count_for_onefifty_to_twohundred = count(start=150, step=1)
+    count_for_onefifty_to_twohundred = count(start=SQUARE_SIZE*3, step=1)
     for _ in range(150, 201):
         onefifty_to_twohundred.append(next(count_for_onefifty_to_twohundred))
 
     twohundred_to_twofifty = []
-    count_for_twohundred_to_twofifty = count(start=200, step=1)
+    count_for_twohundred_to_twofifty = count(start=SQUARE_SIZE*4, step=1)
     for _ in range(200, 251):
         twohundred_to_twofifty.append(next(count_for_twohundred_to_twofifty))
 
     twofifty_to_threehundred = []
-    count_for_twofifty_to_threehundred = count(start=250, step=1)
+    count_for_twofifty_to_threehundred = count(start=SQUARE_SIZE*5, step=1)
     for _ in range(250, 301):
         twofifty_to_threehundred.append(next(count_for_twofifty_to_threehundred))
 
     threehundred_to_threefifty = []
-    count_for_threehundred_to_threefifty = count(start=300, step=1)
+    count_for_threehundred_to_threefifty = count(start=SQUARE_SIZE*6, step=1)
     for _ in range(300, 351):
         threehundred_to_threefifty.append(next(count_for_threehundred_to_threefifty))
 
     threefifty_to_fourhundred = []
-    count_for_threefifty_to_fourhundred = count(start=350, step=1)
+    count_for_threefifty_to_fourhundred = count(start=SQUARE_SIZE*7, step=1)
     for _ in range(350, 401):
         threefifty_to_fourhundred.append(next(count_for_threefifty_to_fourhundred))
 

@@ -129,3 +129,64 @@ default_positions =  [
     }
     ]
 
+black_dp = default_positions[0]["Black"]
+white_dp = default_positions[1]["White"]
+
+class BlackPosition():
+    BLACK_KING_POSITION = moves[(black_dp["king"])]
+    BLACK_QUEEN_POSITION = moves[(black_dp["queen"])]
+
+    BLACK_RIGHT_ROOK_POSITION = moves[(black_dp["right_rook"])]
+    BLACK_LEFT_ROOK_POSITION = moves[(black_dp["left_rook"])]
+    BLACK_RIGHT_KNIGHT_POSITION = moves[(black_dp["right_knight"])]
+    BLACK_LEFT_KNIGHT_POSITION = moves[(black_dp["left_knight"])]
+    BLACK_RIGHT_BISHOP_POSITION = moves[(black_dp["right_bishop"])]
+    BLACK_LEFT_BISHOP_POSITION = moves[(black_dp["left_bishop"])]
+
+    BLACK_PAWN_A7_POSITION = moves[(black_dp["pawn1"])]
+    BLACK_PAWN_B7_POSITION = moves[(black_dp["pawn2"])]
+    BLACK_PAWN_C7_POSITION = moves[(black_dp["pawn3"])]
+    BLACK_PAWN_D7_POSITION = moves[(black_dp["pawn4"])]
+    BLACK_PAWN_E7_POSITION = moves[(black_dp["pawn5"])]
+    BLACK_PAWN_F7_POSITION = moves[(black_dp["pawn6"])]
+    BLACK_PAWN_G7_POSITION = moves[(black_dp["pawn7"])]
+    BLACK_PAWN_H7_POSITION = moves[(black_dp["pawn8"])]
+
+
+    BLACK_PIECES_ALL_POSITIONS = [BLACK_KING_POSITION, BLACK_QUEEN_POSITION, BLACK_RIGHT_ROOK_POSITION, 
+                                BLACK_LEFT_ROOK_POSITION, BLACK_RIGHT_KNIGHT_POSITION, 
+                                BLACK_LEFT_KNIGHT_POSITION, BLACK_RIGHT_BISHOP_POSITION, 
+                                BLACK_LEFT_BISHOP_POSITION, BLACK_PAWN_A7_POSITION,
+                                BLACK_PAWN_B7_POSITION, BLACK_PAWN_C7_POSITION, BLACK_PAWN_D7_POSITION, 
+                                BLACK_PAWN_E7_POSITION, BLACK_PAWN_F7_POSITION, BLACK_PAWN_G7_POSITION,
+                                BLACK_PAWN_H7_POSITION]
+
+# TODO: Add the POSITIONs for all the white pieces, including white pawns.
+class WhitePosition():
+    WHITE_KING_POSITION = moves[(white_dp["king"])]
+    WHITE_QUEEN_POSITION = moves[(white_dp["queen"])]
+
+    WHITE_RIGHT_ROOK_POSITION = moves[(white_dp["right_rook"])]
+    WHITE_LEFT_ROOK_POSITION = moves[(white_dp["left_rook"])]
+    WHITE_RIGHT_KNIGHT_POSITION = moves[(white_dp["right_knight"])]
+    WHITE_LEFT_KNIGHT_POSITION = moves[(white_dp["left_knight"])]
+    WHITE_RIGHT_BISHOP_POSITION = moves[(white_dp["right_bishop"])]
+    WHITE_LEFT_BISHOP_POSITION = moves[(white_dp["left_bishop"])]
+
+    WHITE_PAWN_A7_POSITION = moves[(white_dp["pawn1"])]
+    WHITE_PAWN_B7_POSITION = moves[(white_dp["pawn2"])]
+    WHITE_PAWN_C7_POSITION = moves[(white_dp["pawn3"])]
+    WHITE_PAWN_D7_POSITION = moves[(white_dp["pawn4"])]
+    WHITE_PAWN_E7_POSITION = moves[(white_dp["pawn5"])]
+    WHITE_PAWN_F7_POSITION = moves[(white_dp["pawn6"])]
+    WHITE_PAWN_G7_POSITION = moves[(white_dp["pawn7"])]
+    WHITE_PAWN_H7_POSITION = moves[(white_dp["pawn8"])]
+
+
+    WHITE_PIECES_ALL_POSITIONS = [WHITE_KING_POSITION, WHITE_QUEEN_POSITION, WHITE_RIGHT_ROOK_POSITION, 
+                                WHITE_LEFT_ROOK_POSITION, WHITE_RIGHT_KNIGHT_POSITION, 
+                                WHITE_LEFT_KNIGHT_POSITION, WHITE_RIGHT_BISHOP_POSITION, 
+                                WHITE_LEFT_BISHOP_POSITION, WHITE_PAWN_A7_POSITION,
+                                WHITE_PAWN_B7_POSITION, WHITE_PAWN_C7_POSITION, WHITE_PAWN_D7_POSITION, 
+                                WHITE_PAWN_E7_POSITION, WHITE_PAWN_F7_POSITION, WHITE_PAWN_G7_POSITION,
+                                WHITE_PAWN_H7_POSITION]
