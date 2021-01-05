@@ -1,33 +1,7 @@
-import pygame
-from itertools import count
-from datetime import datetime
-from database.moves import moves, BlackPosition, WhitePosition
-from database.load_piece_images import PieceImages
 import logging
-
-BLACK_SQUARE = pygame.image.load('assets/black-square.png')
-WHITE_SQUARE = pygame.image.load('assets/white-square.png')
-SQUARE_SIZE = 50
-
-(SCREEN_WIDTH, SCREEN_HEIGHT) = (400, 400)
-
-CURRENT_DATE = str(datetime.today().date().__str__()) # Used mostly in logging messages.
-CURRENT_TIME = str(datetime.now().time().__str__()) # Used mostly in logging messages.
-
-class Position:
-    @classmethod
-    def select_piece(cls, piece):
-        pass
-
-    @classmethod
-    def move_piece(cls, piece, position):
-            """OK, so this function works. There's only one issue and it has nothing to do with this function
-            anyway. It is being caused by the Chessboard.__init__() method. Since it is in the game loop, it
-            is being called continously. The piece is moved, but in the next iteration of the game loop, the
-            coordinates of the piece are set back to default."""
-
-            # Until you've built this function fully, here's how the pieces are actually moved: (in case you forget)
-            piece = moves[position]
+from itertools import count
+from config import SQUARE_SIZE, CURRENT_TIME
+from config.moves import moves, default_positions
 
 class PieceCoordinates:
     """Contains the coordinates of each square in the game. The size of each square is 50 and that's 
@@ -232,3 +206,132 @@ class PieceCoordinates:
         down all the way to row 1. The address SHOULD be found by now."""
 
         return returned_address
+
+black_dp = default_positions[0]["Black"]
+white_dp = default_positions[1]["White"]
+
+class BlackCoordinates():
+    # Gives you X/Y Coordinates like (300, 300), etc.
+    BLACK_KING_COORDINATES = moves[(black_dp["king"])]
+    BLACK_QUEEN_COORDINATES = moves[(black_dp["queen"])]
+
+    BLACK_RIGHT_ROOK_COORDINATES = moves[(black_dp["right_rook"])]
+    BLACK_LEFT_ROOK_COORDINATES = moves[(black_dp["left_rook"])]
+    BLACK_RIGHT_KNIGHT_COORDINATES = moves[(black_dp["right_knight"])]
+    BLACK_LEFT_KNIGHT_COORDINATES = moves[(black_dp["left_knight"])]
+    BLACK_RIGHT_BISHOP_COORDINATES = moves[(black_dp["right_bishop"])]
+    BLACK_LEFT_BISHOP_COORDINATES = moves[(black_dp["left_bishop"])]
+
+    BLACK_PAWN_A7_COORDINATES = moves[(black_dp["pawn1"])]
+    BLACK_PAWN_B7_COORDINATES = moves[(black_dp["pawn2"])]
+    BLACK_PAWN_C7_COORDINATES = moves[(black_dp["pawn3"])]
+    BLACK_PAWN_D7_COORDINATES = moves[(black_dp["pawn4"])]
+    BLACK_PAWN_E7_COORDINATES = moves[(black_dp["pawn5"])]
+    BLACK_PAWN_F7_COORDINATES = moves[(black_dp["pawn6"])]
+    BLACK_PAWN_G7_COORDINATES = moves[(black_dp["pawn7"])]
+    BLACK_PAWN_H7_COORDINATES = moves[(black_dp["pawn8"])]
+
+class WhiteCoordinates():
+    # Gives you X/Y Coordinates like (300, 300), etc.
+    WHITE_KING_COORDINATES = moves[(white_dp["king"])]
+    WHITE_QUEEN_COORDINATES = moves[(white_dp["queen"])]
+
+    WHITE_RIGHT_ROOK_COORDINATES = moves[(white_dp["right_rook"])]
+    WHITE_LEFT_ROOK_COORDINATES = moves[(white_dp["left_rook"])]
+    WHITE_RIGHT_KNIGHT_COORDINATES = moves[(white_dp["right_knight"])]
+    WHITE_LEFT_KNIGHT_COORDINATES = moves[(white_dp["left_knight"])]
+    WHITE_RIGHT_BISHOP_COORDINATES = moves[(white_dp["right_bishop"])]
+    WHITE_LEFT_BISHOP_COORDINATES = moves[(white_dp["left_bishop"])]
+
+    WHITE_PAWN_A7_COORDINATES = moves[(white_dp["pawn1"])]
+    WHITE_PAWN_B7_COORDINATES = moves[(white_dp["pawn2"])]
+    WHITE_PAWN_C7_COORDINATES = moves[(white_dp["pawn3"])]
+    WHITE_PAWN_D7_COORDINATES = moves[(white_dp["pawn4"])]
+    WHITE_PAWN_E7_COORDINATES = moves[(white_dp["pawn5"])]
+    WHITE_PAWN_F7_COORDINATES = moves[(white_dp["pawn6"])]
+    WHITE_PAWN_G7_COORDINATES = moves[(white_dp["pawn7"])]
+    WHITE_PAWN_H7_COORDINATES = moves[(white_dp["pawn8"])]
+
+ALL_PIECE_COORDINATES = [
+        BlackCoordinates.BLACK_KING_COORDINATES, BlackCoordinates.BLACK_QUEEN_COORDINATES, 
+        BlackCoordinates.BLACK_RIGHT_ROOK_COORDINATES, BlackCoordinates.BLACK_LEFT_ROOK_COORDINATES, 
+        BlackCoordinates.BLACK_RIGHT_KNIGHT_COORDINATES, BlackCoordinates.BLACK_LEFT_KNIGHT_COORDINATES, 
+        BlackCoordinates.BLACK_RIGHT_BISHOP_COORDINATES, BlackCoordinates.BLACK_LEFT_BISHOP_COORDINATES, 
+        BlackCoordinates.BLACK_PAWN_A7_COORDINATES, BlackCoordinates.BLACK_PAWN_B7_COORDINATES, 
+        BlackCoordinates.BLACK_PAWN_C7_COORDINATES, BlackCoordinates.BLACK_PAWN_D7_COORDINATES, 
+        BlackCoordinates.BLACK_PAWN_E7_COORDINATES, BlackCoordinates.BLACK_PAWN_F7_COORDINATES, 
+        BlackCoordinates.BLACK_PAWN_G7_COORDINATES, BlackCoordinates.BLACK_PAWN_H7_COORDINATES,
+
+
+        WhiteCoordinates.WHITE_KING_COORDINATES, WhiteCoordinates.WHITE_QUEEN_COORDINATES, 
+        WhiteCoordinates.WHITE_RIGHT_ROOK_COORDINATES, WhiteCoordinates.WHITE_LEFT_ROOK_COORDINATES, 
+        WhiteCoordinates.WHITE_RIGHT_KNIGHT_COORDINATES, WhiteCoordinates.WHITE_LEFT_KNIGHT_COORDINATES, 
+        WhiteCoordinates.WHITE_RIGHT_BISHOP_COORDINATES, WhiteCoordinates.WHITE_LEFT_BISHOP_COORDINATES, 
+        WhiteCoordinates.WHITE_PAWN_A7_COORDINATES, WhiteCoordinates.WHITE_PAWN_B7_COORDINATES, 
+        WhiteCoordinates.WHITE_PAWN_C7_COORDINATES, WhiteCoordinates.WHITE_PAWN_D7_COORDINATES, 
+        WhiteCoordinates.WHITE_PAWN_E7_COORDINATES, WhiteCoordinates.WHITE_PAWN_F7_COORDINATES, 
+        WhiteCoordinates.WHITE_PAWN_G7_COORDINATES, WhiteCoordinates.WHITE_PAWN_H7_COORDINATES]
+
+class BlackPosition():
+    # Gives you addresses like 'd4', 'h2', 'e7', etc.
+    BLACK_KING_POSITION = (black_dp["king"])
+    BLACK_QUEEN_POSITION = (black_dp["queen"])
+
+    BLACK_RIGHT_ROOK_POSITION = (black_dp["right_rook"])
+    BLACK_LEFT_ROOK_POSITION = (black_dp["left_rook"])
+    BLACK_RIGHT_KNIGHT_POSITION = (black_dp["right_knight"])
+    BLACK_LEFT_KNIGHT_POSITION = (black_dp["left_knight"])
+    BLACK_RIGHT_BISHOP_POSITION = (black_dp["right_bishop"])
+    BLACK_LEFT_BISHOP_POSITION = (black_dp["left_bishop"])
+
+    BLACK_PAWN_A7_POSITION = (black_dp["pawn1"])
+    BLACK_PAWN_B7_POSITION = (black_dp["pawn2"])
+    BLACK_PAWN_C7_POSITION = (black_dp["pawn3"])
+    BLACK_PAWN_D7_POSITION = (black_dp["pawn4"])
+    BLACK_PAWN_E7_POSITION = (black_dp["pawn5"])
+    BLACK_PAWN_F7_POSITION = (black_dp["pawn6"])
+    BLACK_PAWN_G7_POSITION = (black_dp["pawn7"])
+    BLACK_PAWN_H7_POSITION = (black_dp["pawn8"])
+
+class WhitePosition():
+    # Gives you addresses like 'd4', 'h2', 'e7', etc.
+    WHITE_KING_POSITION = (white_dp["king"])
+    WHITE_QUEEN_POSITION = (white_dp["queen"])
+
+    WHITE_RIGHT_ROOK_POSITION = (white_dp["right_rook"])
+    WHITE_LEFT_ROOK_POSITION = (white_dp["left_rook"])
+    WHITE_RIGHT_KNIGHT_POSITION = (white_dp["right_knight"])
+    WHITE_LEFT_KNIGHT_POSITION = (white_dp["left_knight"])
+    WHITE_RIGHT_BISHOP_POSITION = (white_dp["right_bishop"])
+    WHITE_LEFT_BISHOP_POSITION = (white_dp["left_bishop"])
+
+    WHITE_PAWN_A7_POSITION = (white_dp["pawn1"])
+    WHITE_PAWN_B7_POSITION = (white_dp["pawn2"])
+    WHITE_PAWN_C7_POSITION = (white_dp["pawn3"])
+    WHITE_PAWN_D7_POSITION = (white_dp["pawn4"])
+    WHITE_PAWN_E7_POSITION = (white_dp["pawn5"])
+    WHITE_PAWN_F7_POSITION = (white_dp["pawn6"])
+    WHITE_PAWN_G7_POSITION = (white_dp["pawn7"])
+    WHITE_PAWN_H7_POSITION = (white_dp["pawn8"])
+
+    print(WHITE_KING_POSITION)
+
+ALL_PIECE_POSITIONS = [
+        BlackPosition.BLACK_KING_POSITION, BlackPosition.BLACK_QUEEN_POSITION, 
+        BlackPosition.BLACK_RIGHT_ROOK_POSITION, BlackPosition.BLACK_LEFT_ROOK_POSITION, 
+        BlackPosition.BLACK_RIGHT_KNIGHT_POSITION, BlackPosition.BLACK_LEFT_KNIGHT_POSITION, 
+        BlackPosition.BLACK_RIGHT_BISHOP_POSITION, BlackPosition.BLACK_LEFT_BISHOP_POSITION, 
+        BlackPosition.BLACK_PAWN_A7_POSITION, BlackPosition.BLACK_PAWN_B7_POSITION, 
+        BlackPosition.BLACK_PAWN_C7_POSITION, BlackPosition.BLACK_PAWN_D7_POSITION, 
+        BlackPosition.BLACK_PAWN_E7_POSITION, BlackPosition.BLACK_PAWN_F7_POSITION, 
+        BlackPosition.BLACK_PAWN_G7_POSITION, BlackPosition.BLACK_PAWN_H7_POSITION,
+
+
+        WhitePosition.WHITE_KING_POSITION, WhitePosition.WHITE_QUEEN_POSITION, 
+        WhitePosition.WHITE_RIGHT_ROOK_POSITION, WhitePosition.WHITE_LEFT_ROOK_POSITION, 
+        WhitePosition.WHITE_RIGHT_KNIGHT_POSITION, WhitePosition.WHITE_LEFT_KNIGHT_POSITION, 
+        WhitePosition.WHITE_RIGHT_BISHOP_POSITION, WhitePosition.WHITE_LEFT_BISHOP_POSITION, 
+        WhitePosition.WHITE_PAWN_A7_POSITION, WhitePosition.WHITE_PAWN_B7_POSITION, 
+        WhitePosition.WHITE_PAWN_C7_POSITION, WhitePosition.WHITE_PAWN_D7_POSITION, 
+        WhitePosition.WHITE_PAWN_E7_POSITION, WhitePosition.WHITE_PAWN_F7_POSITION, 
+        WhitePosition.WHITE_PAWN_G7_POSITION, WhitePosition.WHITE_PAWN_H7_POSITION]
