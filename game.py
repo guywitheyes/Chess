@@ -4,7 +4,7 @@ in the config.py file."""
 import pygame
 import logging
 from config import (CURRENT_TIME, CURRENT_DATE, SCREEN_HEIGHT, SCREEN_WIDTH, BLACK_SQUARE, WHITE_SQUARE,
-        SQUARE_SIZE)
+        SQUARE_SIZE, screen, SELECTED_SQUARE_COLOR, piece_currently_selected)
 from config.moves import SQUARE_SIZE, moves
 from config.load_piece_images import PieceImages
 from config.piece_coordinates import BlackCoordinates, WhiteCoordinates, BlackPosition, WhitePosition
@@ -12,8 +12,7 @@ from config.piece_coordinates import BlackCoordinates, WhiteCoordinates, BlackPo
 logging.basicConfig(filename=f"logs/{str(CURRENT_DATE)}.log", filemode='a', level=logging.DEBUG)
 
 pygame.display.init()
-screen_title = pygame.display.set_caption('Chess')
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
 
 class Chessboard:
     def create_chessboard():
@@ -111,11 +110,9 @@ class Chessboard:
 
 class Position:
     @classmethod
-    def select_piece(cls, piece_address):
-        return moves[(piece_address)]
+    def select_piece(cls, piece_x, piece_y):
+        pygame.draw.rect(screen, SELECTED_SQUARE_COLOR, (piece_x, piece_y, 50, 50))
 
-        # for coordinates in ALL_PIECE_COORDINATES:
-            
     @classmethod
     def move_piece(cls, piece, address):
             # FIXME: OK, 'piece' is the variable we're trying to change, but it's value is actually in 
@@ -125,6 +122,7 @@ class Position:
 
             # Until you've built this function fully, here's how the pieces are actually moved: (in case you forget)
             BlackCoordinates.BLACK_KING_COORDINATES = moves["d4"]
+            piece_currently_selected = False
             
             # print(piece)
             # print(address)
