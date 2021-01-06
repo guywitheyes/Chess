@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+    <div class="container">
+        <h1>Register Today</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-success">Register</button>
+        </form>
+
+        <div class="errors">
+            {% for field in form %}
+                {% if form.field.errors %}
+                    {{ field.errors }}
+
+                    {% if field.help_text %}
+                        <p class="help">{{ field.help_text|safe }}</p>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        
+        <hr>
+
+        <div class="have-account">
+            <span class="text-muted">
+                Already have an account? <a href="#">Log In</a>
+            </span>
+        </div>
+    </div>
+{% endblock %}
