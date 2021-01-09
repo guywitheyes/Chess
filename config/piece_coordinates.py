@@ -231,6 +231,60 @@ class BlackCoordinates():
     BLACK_PAWN_G7_COORDINATES = moves[(black_dp["pawn7"])]
     BLACK_PAWN_H7_COORDINATES = moves[(black_dp["pawn8"])]
 
+    @classmethod
+    def update_coordinates(cls, piece, address):
+        if piece == cls.BLACK_KING_COORDINATES:
+            cls.BLACK_KING_COORDINATES = moves[address]
+
+        if piece == cls.BLACK_QUEEN_COORDINATES:
+            cls.BLACK_QUEEN_COORDINATES = moves[address]
+
+
+        if piece == cls.BLACK_RIGHT_ROOK_COORDINATES:
+            cls.BLACK_RIGHT_ROOK_COORDINATES = moves[address]
+
+        if piece == cls.BLACK_LEFT_ROOK_COORDINATES:
+            cls.BLACK_LEFT_ROOK_COORDINATES = moves[address]
+
+        if piece == cls.BLACK_RIGHT_KNIGHT_COORDINATES:
+            cls.BLACK_RIGHT_KNIGHT_COORDINATES = moves[address]
+
+        if piece == cls.BLACK_LEFT_KNIGHT_COORDINATES:
+            cls.BLACK_LEFT_KNIGHT_COORDINATES = moves[address]
+
+        if piece == cls.BLACK_RIGHT_BISHOP_COORDINATES:
+            cls.BLACK_RIGHT_BISHOP_COORDINATES = moves[address]
+
+        if piece == cls.BLACK_LEFT_BISHOP_COORDINATES:
+            cls.BLACK_LEFT_BISHOP_COORDINATES = moves[address]
+
+
+
+        if piece == cls.BLACK_PAWN_A7_COORDINATES:
+            cls.BLACK_PAWN_A7_COORDINATES = moves[address]
+            
+        if piece == cls.BLACK_PAWN_B7_COORDINATES:
+            cls.BLACK_PAWN_B7_COORDINATES = moves[address]
+            
+        if piece == cls.BLACK_PAWN_C7_COORDINATES:
+            cls.BLACK_PAWN_C7_COORDINATES = moves[address]
+            
+        if piece == cls.BLACK_PAWN_D7_COORDINATES:
+            cls.BLACK_PAWN_D7_COORDINATES = moves[address]
+            
+        if piece == cls.BLACK_PAWN_E7_COORDINATES:
+            cls.BLACK_PAWN_E7_COORDINATES = moves[address]
+            
+        if piece == cls.BLACK_PAWN_F7_COORDINATES:
+            cls.BLACK_PAWN_F7_COORDINATES = moves[address]
+            
+        if piece == cls.BLACK_PAWN_G7_COORDINATES:
+            cls.BLACK_PAWN_G7_COORDINATES = moves[address]
+            
+        if piece == cls.BLACK_PAWN_H7_COORDINATES:
+            cls.BLACK_PAWN_H7_COORDINATES = moves[address]
+            
+
 class WhiteCoordinates():
     # Gives you X/Y Coordinates like (300, 300), etc.
     WHITE_KING_COORDINATES = moves[(white_dp["king"])]
@@ -252,6 +306,59 @@ class WhiteCoordinates():
     WHITE_PAWN_G7_COORDINATES = moves[(white_dp["pawn7"])]
     WHITE_PAWN_H7_COORDINATES = moves[(white_dp["pawn8"])]
 
+    @classmethod
+    def update_coordinates(cls, piece, address):
+        if piece == cls.WHITE_KING_COORDINATES:
+            cls.WHITE_KING_COORDINATES = moves[address]
+
+        if piece == cls.WHITE_QUEEN_COORDINATES:
+            cls.WHITE_QUEEN_COORDINATES = moves[address]
+
+
+        if piece == cls.WHITE_RIGHT_ROOK_COORDINATES:
+            cls.WHITE_RIGHT_ROOK_COORDINATES = moves[address]
+
+        if piece == cls.WHITE_LEFT_ROOK_COORDINATES:
+            cls.WHITE_LEFT_ROOK_COORDINATES = moves[address]
+
+        if piece == cls.WHITE_RIGHT_KNIGHT_COORDINATES:
+            cls.WHITE_RIGHT_KNIGHT_COORDINATES = moves[address]
+
+        if piece == cls.WHITE_LEFT_KNIGHT_COORDINATES:
+            cls.WHITE_LEFT_KNIGHT_COORDINATES = moves[address]
+
+        if piece == cls.WHITE_RIGHT_BISHOP_COORDINATES:
+            cls.WHITE_RIGHT_BISHOP_COORDINATES = moves[address]
+
+        if piece == cls.WHITE_LEFT_BISHOP_COORDINATES:
+            cls.WHITE_LEFT_BISHOP_COORDINATES = moves[address]
+
+
+
+        if piece == cls.WHITE_PAWN_A7_COORDINATES:
+            cls.WHITE_PAWN_A7_COORDINATES = moves[address]
+            
+        if piece == cls.WHITE_PAWN_B7_COORDINATES:
+            cls.WHITE_PAWN_B7_COORDINATES = moves[address]
+            
+        if piece == cls.WHITE_PAWN_C7_COORDINATES:
+            cls.WHITE_PAWN_C7_COORDINATES = moves[address]
+            
+        if piece == cls.WHITE_PAWN_D7_COORDINATES:
+            cls.WHITE_PAWN_D7_COORDINATES = moves[address]
+            
+        if piece == cls.WHITE_PAWN_E7_COORDINATES:
+            cls.WHITE_PAWN_E7_COORDINATES = moves[address]
+            
+        if piece == cls.WHITE_PAWN_F7_COORDINATES:
+            cls.WHITE_PAWN_F7_COORDINATES = moves[address]
+            
+        if piece == cls.WHITE_PAWN_G7_COORDINATES:
+            cls.WHITE_PAWN_G7_COORDINATES = moves[address]
+            
+        if piece == cls.WHITE_PAWN_H7_COORDINATES:
+            cls.WHITE_PAWN_H7_COORDINATES = moves[address]
+            
 ALL_PIECE_COORDINATES = [
         BlackCoordinates.BLACK_KING_COORDINATES, BlackCoordinates.BLACK_QUEEN_COORDINATES, 
         BlackCoordinates.BLACK_RIGHT_ROOK_COORDINATES, BlackCoordinates.BLACK_LEFT_ROOK_COORDINATES, 
