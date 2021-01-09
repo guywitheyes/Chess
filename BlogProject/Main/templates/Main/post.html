@@ -1,0 +1,15 @@
+{% extends 'Main/base.html' %}
+
+{% block content %}
+<div class="content-section">
+    <h1>{{ post.title }}</h1>
+    <span class="text-muted">
+        <a href="{% url 'author' post.author %}" class="author badge badge-primary">{{ post.author }}</a>
+        <span class="date-posted">{{ post.date_posted }}</span>
+    </span>
+    <p class="content">{{ post.content }}</p>
+
+    <a href="{% url 'update' post.id %}"><button class="btn btn-info">Update</button></a>
+    <a href="{% url 'delete' post.id %}"><button class="btn btn-danger">Delete</button></a>
+</div>
+{% endblock content %}

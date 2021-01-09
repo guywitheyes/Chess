@@ -1,0 +1,17 @@
+{% extends 'Main/base.html' %}
+
+{% block content %}
+<h1>Home</h1>
+<hr>
+
+<div class="content-section">
+    {% for post in posts %}
+        <h2><a href="{% url 'post' post.id %}">{{ post.title }}</a></h2>
+        <span class="text-muted">
+            <a href="{% url 'author' post.author %}" class="author">{{ post.author }}</a>
+            <span class="date-posted">{{ post.date_posted }}</span>
+        </span>
+        <p class="content">{{ post.content }}</p>
+    {% endfor %}
+</div>
+{% endblock content %}
