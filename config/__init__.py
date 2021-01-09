@@ -23,8 +23,11 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 selected_piece = None
 square_address = None
 
+selected_piece_coordinates = None
+
 '''Difference between these two is that when user_selects_a_piece, we run the select() function on it.
 Then, by selecting it, piece_currently_selected becomes True. Since a piece is now selected, the 
 move_piece() function will now be run to move the piece and change piece_currently_selected back to False.'''
+
 user_selected_a_piece = False # Did the user click on a piece and select it?
 piece_currently_selected = False # Is a piece currently selected?
