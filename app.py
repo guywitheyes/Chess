@@ -1,11 +1,11 @@
 """This file is used to run the game loop."""
 import pygame
-from game import Chessboard, Position
-from config.piece_coordinates import (ALL_PIECE_POSITIONS, PieceCoordinates, BlackCoordinates, 
+from game import Chessboard
+from config.piece_coordinates import (ALL_PIECE_COORDINATES, ALL_PIECE_POSITIONS, PieceCoordinates, BlackCoordinates, 
         WhiteCoordinates)
 from config import (screen, user_selected_a_piece, piece_currently_selected,
         square_address, selected_piece, selected_piece_coordinates, SELECTED_SQUARE_COLOR)
-from config.moves import moves
+from config.moves import moves, get_random_move
 from sys import exit
 
 def return_selected_piece_address():
@@ -45,6 +45,10 @@ def select_piece(event_coordinates):
             piece_currently_selected = True
 
 def move_piece(piece, address):
+    '''Moves a given piece to a specified address. The address is something like 'a3', 'b7'. The piece
+    is any piece from the BlackCoordinates or WhiteCoordinates classes from the 
+    config/piece_coordinates.py file.'''
+
     global piece_currently_selected
     BlackCoordinates.update_coordinates(piece, address)
     WhiteCoordinates.update_coordinates(piece, address)
@@ -61,13 +65,14 @@ while running:
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
-                select_piece(event.pos)
+                if piece_currently_selected:
+                    for move in ALL_PIECE_COORDINATES:
+                        move_piece(move, get_random_move()) 
+                else:
+                    select_piece(event.pos)
                 
 
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if event.button == 1:
-                if piece_currently_selected and event.pos == selected_piece_coordinates:
-                    move_piece(moves['d2'], 'd4') 
+                
     
     Chessboard() # Create chessboard.
                                     

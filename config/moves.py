@@ -1,4 +1,5 @@
 # This dictionary involved math operations, so I decided to keep it in a Python file, instead of a JSON file.
+import random
 SQUARE_SIZE = 50
 
 moves = {    #Row: 1
@@ -81,6 +82,9 @@ moves = {    #Row: 1
         'g1': (SQUARE_SIZE*6, SQUARE_SIZE*7),
         'h1': (SQUARE_SIZE*7, SQUARE_SIZE*7),
     }
+
+def get_random_move():
+    return random.choice(list(moves))
 
 default_positions =  [
     { 'Black':
