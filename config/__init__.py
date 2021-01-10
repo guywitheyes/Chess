@@ -1,3 +1,4 @@
+'''All repetitive code has been moved here to the config directory, away from the normal game code.'''
 import pygame
 from itertools import count
 from datetime import datetime
