@@ -2,7 +2,7 @@
 import pygame
 from game import Chessboard
 from config.piece_coordinates import (ALL_PIECE_COORDINATES, ALL_PIECE_POSITIONS, PieceCoordinates, BlackCoordinates, 
-        WhiteCoordinates)
+        WhiteCoordinates, BlackPosition)
 from config import (screen, user_selected_a_piece, piece_currently_selected,
         square_address, selected_piece, selected_piece_coordinates, SELECTED_SQUARE_COLOR)
 from config.moves import moves, get_random_move
@@ -17,6 +17,14 @@ def return_selected_piece_address():
             selected_piece = piece
     return selected_piece
 
+def return_selected_piece_coordinates():
+    selected_piece_coordinates = None
+    for piece in ALL_PIECE_COORDINATES: # check all pieces' current positions.
+        if piece == moves[square_address]:
+            selected_piece_coordinates = piece
+    return selected_piece_coordinates
+
+
 def select_piece(event_coordinates):
     global user_selected_a_piece
     global selected_piece_coordinates
@@ -29,11 +37,9 @@ def select_piece(event_coordinates):
 
     selected_piece = return_selected_piece_address()
     print(selected_piece)
-
     
     if selected_piece != None: # did the user click on a square where there isn't a piece? then, let's not execute this.
         user_selected_a_piece = True
-
 
     if user_selected_a_piece and square_address != None:
         if selected_piece != None:
@@ -66,14 +72,9 @@ while running:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
                 if piece_currently_selected:
-                    for move in ALL_PIECE_COORDINATES:
-                        move_piece(move, get_random_move()) 
+                    x, y = event.pos
+                    move_piece(return_selected_piece_coordinates(), PieceCoordinates.check_piece_coordinates(x, y))
                 else:
                     select_piece(event.pos)
-                
-
-                
     
     Chessboard() # Create chessboard.
-                                    
-
