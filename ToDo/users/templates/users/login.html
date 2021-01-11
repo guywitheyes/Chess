@@ -1,0 +1,17 @@
+{%extends 'users/base.html'%}
+{%block content%}
+<h1>Log In</h1>
+
+<div class="content-section">
+    <form action="" method="post" class="login">
+        <fieldset class="form-group">
+            {%csrf_token%}
+            {{form}}
+        </fieldset>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Log In</button>
+        </div>
+    </form>
+</div>
+{%endblock content%}

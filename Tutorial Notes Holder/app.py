@@ -1,21 +1,17 @@
-import smtplib
-from config import EMAIL_ADDRESS, PASSWORD
-from email.message import EmailMessage
+class Rectangle:
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
 
-with open('message.html', 'r') as file:
-    message_content = file.read()
+    def area(self):
+        return self.length * self.width
 
-addresses_to_pitch = ['daxevol413@liaphoto.com']
+    def perimeter(self):
+        return 2 * self.length + 2 * self.width
 
-with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-    smtp.login(EMAIL_ADDRESS, PASSWORD)
+# Here we declare that the Square class inherits from the Rectangle class
+class Square(Rectangle):
+    def __init__(self, length):
+        super().__init__(length, length)
 
-    for address in addresses_to_pitch:
-        msg = EmailMessage()
-        msg['Subject'] = 'I\'ll build you a spectacular personal website'
-        msg['From'] = EMAIL_ADDRESS
-        msg['To'] = address
-        msg.add_header('Content-Type','text/html')
-        msg.set_payload(message_content)
-
-        smtp.send_message(msg)
+print(Square.__mro__)

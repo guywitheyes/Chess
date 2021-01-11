@@ -1,0 +1,30 @@
+{%extends 'users/base.html'%}
+{% load crispy_forms_tags %}
+{%block content%}
+<h1>{{ user.username }}</h1>
+
+{%for task in tasks%}
+    <h3>{{task.description}}</h3>
+    <span class="text-muted">{{task.priority}} - {{task.due_date}}</span>
+    <br>
+
+    <a href="{%url 'complete' task.id %}"><button class="btn btn-success complete">Complete</button></a>
+    <a href="{%url 'update' task.id %}"><button class="btn btn-primary update">Update</button></a>
+    <a href="{%url 'delete' task.id %}"><button class="btn btn-danger delete">Delete</button></a>
+    
+    <hr>
+{%endfor%}
+
+<div class="content-section">
+    <form action="" method="post" class="form-group">
+        <fieldset class="form-group">
+            {%csrf_token%}
+            {{form|crispy}}
+        </fieldset>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Create Task</button>
+        </div>
+    </form>
+</div>
+{%endblock content%}
