@@ -3,9 +3,11 @@ A chess game that I planned to create using PyGame, but I lost interest in it af
 
 ## Game Interface
 This is what the game looks like:
+
 ![Game Interface](https://i.imgur.com/WLadOFQ.png)
 
 You can select and move pieces:
+
 ![Selecting and Moving pieces](https://i.imgur.com/cIIHBXD.png)
 
 And that's about all you can do so far. As I said, I'm not interested in this project any longer and won't be developing it further.
